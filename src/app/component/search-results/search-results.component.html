@@ -1,7 +1,7 @@
 <div class='container' *ngIf="artists?.length > 0">
 	<div class='row artistRow' *ngFor="let artist of artists">
 		<div class='col-md-4 artistPhoto'>
-			<img src="{{artist.images[2]['url']}}" />
+			<img src="{{artist.images[0]['url']}}" class='imageArtist' *ngIf="artist.images[0]"/>
 		</div>
 		<div class='col-md-4 artistName'>
 			<a href = 'https://play.spotify.com/artist/{{artist.id}}' target="_blank">{{artist.name}}</a>
@@ -11,7 +11,7 @@
 				popularity: {{artist.popularityInt}}	
 			</div>
 			<div class='row'>
-				<a [routerLink]="[artist.name,'albums']">
+				<a [routerLink]="[artist.id,'albums']">
 					<button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;Search Albums</button>
 				</a>	
 			</div>
