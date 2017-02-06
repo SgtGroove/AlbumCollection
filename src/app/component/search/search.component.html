@@ -1,0 +1,13 @@
+<div class='container searchBox'>
+	<div class='row'>
+		<div class="col-md-4">
+			<input type="text" class="form-control" placeholder="Artist Name" aria-describedby="basic-addon2" [(ngModel)]="search">
+		</div>
+		<div class="col-md-4">
+			<button type="button" class="btn btn-primary" aria-label="Left Align" (click)="clicked()">
+				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+			</button>	
+		</div>
+	</div>
+</div>
+<search-results [artists] = "artists"></search-results>
