@@ -14,6 +14,11 @@ const appRoutes: Routes = [
     path: ':artistName/albums',
     component: AlbumlistComponent,
     data: { title: 'AlbumList' }
+  },
+  {
+    path: 'artists/search/:searchString',
+    component: SearchResultsComponent,
+    data: { title: 'SearchResult' }
   }
 ];
 @NgModule({
