@@ -8,8 +8,11 @@
 		</div>
 		<div class='col-md-4'>
 			<div class='row'>
-				<!--popularity: {{album.popularityInt}}	-->
+				<a [routerLink]="['../../albumInfo/' + album.id]">
+					<button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;Album Info</button>
+				</a>
 			</div>
 		</div>
 	</div>
 </div>
+<router-outlet></router-outlet>
