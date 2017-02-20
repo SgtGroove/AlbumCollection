@@ -36,8 +36,26 @@ export class AlbumInfoComponent implements OnInit {
     let name = response.name;
     let artist = response.artists[0];
     let tracks = Array<Track>();
-    
-    let album =new Album( id, name, artist, tracks, year);
+    let imageUrl = '';
+    if(response.images[0] != undefined) {
+      imageUrl = response.images[0].url;
+    }
+
+    for (var i = 0; i < response.tracks.items.length; i++) {  
+      var trackId = response.tracks.items[i].id;
+      var trackName = response.tracks.items[i].name;
+      var albumName = name;
+      var artistName = response.artists[0].name;
+      var duration  = response.tracks.items[i].duration;
+      var track_number = response.tracks.items[i].track_number;
+      var previewUrl  = response.tracks.items[i].preview_url;
+      var uri  = response.tracks.items[i].uri;
+      let track = new Track(trackId, trackName, albumName, artistName, duration, track_number,  previewUrl, uri);
+
+      tracks.push(track);
+    }
+
+    let album = new Album(id, name, artistName, tracks, year, imageUrl);
     return album;
   }
 

@@ -6,6 +6,7 @@ export class Album {
         public name: string, 
         public artist: Artista, 
         public tracks: Array<Track>,
-        public year:number
+        public year:number,
+        public imageUrl:string
     ){}
 }
