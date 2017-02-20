@@ -31,10 +31,11 @@ export class AlbumInfoComponent implements OnInit {
   }
 
   filtraAlbum(response: any){
-    let year = response.release_date;
+    var d = new Date(response.release_date);
+    let year = d.getFullYear();
     let id = response.id;
     let name = response.name;
-    let artist = response.artists[0];
+    let artist = response.artists[0].name;
     let tracks = Array<Track>();
     let imageUrl = '';
     if(response.images[0] != undefined) {
@@ -46,7 +47,7 @@ export class AlbumInfoComponent implements OnInit {
       var trackName = response.tracks.items[i].name;
       var albumName = name;
       var artistName = response.artists[0].name;
-      var duration  = response.tracks.items[i].duration;
+      var duration  = ((response.tracks.items[i].duration_ms)/60000).toFixed(2);
       var track_number = response.tracks.items[i].track_number;
       var previewUrl  = response.tracks.items[i].preview_url;
       var uri  = response.tracks.items[i].uri;
@@ -59,4 +60,16 @@ export class AlbumInfoComponent implements OnInit {
     return album;
   }
 
+  playStopTrack(url:string, element: Element){
+    var trackList   = document.getElementById('#tracksList');
+    var elemPlaying = trackList.getElementsByClassName('playing');
+    if(elemPlaying ==  null){
+      var audio = new Audio(url);
+      audio.play();
+      element.className += " playingTrack";
+    }
+    else{
+
+    }
+  }
 }

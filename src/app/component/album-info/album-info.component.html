@@ -1,4 +1,15 @@
-<p>
-	
-
-</p>
+<div class='container' *ngIf='album'>
+	<div class='row albumRow'>
+		<div class='col-md-2'>
+			<img src="{{album.imageUrl}}" class='imageArtist' *ngIf="album.imageUrl"/>
+		</div>
+		<div class='col-md-10'>
+			<div class='row infoAlbumBox'>
+				<a href = 'https://play.spotify.com/album/{{album.id}}' target="_blank" class='albumName'>{{album.artist}} - {{album.name}} - {{album.year}} -</a>
+				<div class='row albumTracks' *ngFor="let track of album.tracks" id='tracksList'>
+					{{track.track_number}} - <a (click)='playStopTrack(track.previewUrl, this)'> {{track.name}}</a> {{track.duration}}
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>
