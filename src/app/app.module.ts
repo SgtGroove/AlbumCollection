@@ -7,13 +7,27 @@ import { AppComponent } from './app.component';
 import { SearchComponent } from './component/search/search.component';
 import { SearchResultsComponent } from './component/search-results/search-results.component';
 import { AlbumlistComponent } from './component/albumlist/albumlist.component';
+import { AlbumInfoComponent } from './component/album-info/album-info.component';
 
 
 const appRoutes: Routes = [
   {
-    path: ':artistName/albums',
+    path: ':artistId/albums',
     component: AlbumlistComponent,
     data: { title: 'AlbumList' }
+<<<<<<< HEAD
+=======
+  },
+  {
+    path: 'albumInfo/:albumId',
+    component: AlbumInfoComponent,
+    data: { title: 'SearchResult' }
+  },
+  {
+    path: 'artists/search/:searchString',
+    component: SearchResultsComponent,
+    data: { title: 'SearchResult' }
+>>>>>>> 6378a7bdea7b1f866c5e9885809b734555f85837
   }
 ];
 @NgModule({
@@ -21,7 +35,8 @@ const appRoutes: Routes = [
     AppComponent,
     SearchComponent,
     SearchResultsComponent,
-    AlbumlistComponent
+    AlbumlistComponent,
+    AlbumInfoComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
