@@ -15,8 +15,6 @@ const appRoutes: Routes = [
     path: ':artistId/albums',
     component: AlbumlistComponent,
     data: { title: 'AlbumList' }
-<<<<<<< HEAD
-=======
   },
   {
     path: 'albumInfo/:albumId',
@@ -27,7 +25,6 @@ const appRoutes: Routes = [
     path: 'artists/search/:searchString',
     component: SearchResultsComponent,
     data: { title: 'SearchResult' }
->>>>>>> 6378a7bdea7b1f866c5e9885809b734555f85837
   }
 ];
 @NgModule({
