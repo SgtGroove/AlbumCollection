@@ -3,8 +3,11 @@ export class Track {
 		public id: number, 
 	    public name: string, 
 	    public albumName: string,
+	    public artistName: string,
 	    public duration: number,
 	    public track_number: number,
-	    public url: string
+	    public previewUrl:string,
+	    public uri:string,
     ){}
 }
+
