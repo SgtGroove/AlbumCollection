@@ -20,27 +20,14 @@ export class AlbumlistComponent implements OnInit {
 
       this.sub = this.route.params.subscribe(params => {
         // Prendo la variabile dal path e la uso per caricarmi gli album
-        let artistId = params['artistId'];
-        this.artistService.getAlbumsFromArtist(artistId)
+        let artistName = params['artistName'];
+        this.artistService.getAlbumsFromArtist(artistName)
                            .subscribe(
                                response => {
-                                 this.albums = response.items;
-                                 this.filterAlbumList(this.albums);
+                                 this.albums =  response.topalbums.album
                                },
                                err => { console.log(err); });
     });
   }
 
-  filterAlbumList(albums: Album[]){
-    this.albums = this.removeDuplicatesBy(x => x.name, this.albums);
-  }
-  
-  removeDuplicatesBy(keyFn, array) {
-    var mySet = new Set();
-    return array.filter(function(x) {
-      var key = keyFn(x), isNew = !mySet.has(key);
-      if (isNew) mySet.add(key);
-      return isNew;
-    });
-  }
 }

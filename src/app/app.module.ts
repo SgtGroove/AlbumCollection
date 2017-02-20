@@ -11,7 +11,7 @@ import { AlbumlistComponent } from './component/albumlist/albumlist.component';
 
 const appRoutes: Routes = [
   {
-    path: ':artistId/albums',
+    path: ':artistName/albums',
     component: AlbumlistComponent,
     data: { title: 'AlbumList' }
   }
