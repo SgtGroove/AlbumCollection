@@ -6,17 +6,6 @@
 	margin: 10px;
 }
 
-.albumName
-{
-	font-size:22px;
-	text-align:center;
-}
-
-.albumTracks
-{
-	padding-left:20px;
-}
-
 .imageArtist
 {
 	margin-top:5px;
@@ -25,15 +14,12 @@
 	height:170px;
 }
 
-.infoAlbumBox {
-	float:left;
+.titleBox
+{
+	color: #3A539B;
+	margin-top:5px;
+	text-align:center;
 }
 
-.albumTracks {
-	font-size: 14px;
-	height: 30px;
-}
 
-.playingTrack {
-	color:red;
-}
+

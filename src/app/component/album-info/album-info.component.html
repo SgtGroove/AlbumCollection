@@ -4,11 +4,29 @@
 			<img src="{{album.imageUrl}}" class='imageArtist' *ngIf="album.imageUrl"/>
 		</div>
 		<div class='col-md-10'>
-			<div class='row infoAlbumBox'>
-				<a href = 'https://play.spotify.com/album/{{album.id}}' target="_blank" class='albumName'>{{album.artist}} - {{album.name}} - {{album.year}} -</a>
-				<div class='row albumTracks' *ngFor="let track of album.tracks" id='tracksList'>
-					{{track.track_number}} - <a (click)='playStopTrack(track.previewUrl, this)'> {{track.name}}</a> {{track.duration}}
-				</div>
+			<div class='row'>
+				<div class='titleBox'>
+					<!--<a href = 'https://play.spotify.com/album/{{album.id}}' target="_blank" class='albumName'>{{album.artist}} - {{album.name}} - {{album.year}} -</a>-->
+					<h2 class='albumName'>{{album.artist}} - {{album.name}} - {{album.year}}</h2>
+				</div>	
+				<table class="table">
+				  <thead>
+				    <tr>
+				      <th>#</th>
+				      <th>Name</th>
+				      <th>Duration</th>
+				      <th></th>
+				    </tr>
+				  </thead>
+				  <tbody id='trackResults'>
+					  <tr  *ngFor="let track of album.tracks">
+					  	<td>{{track.track_number}}</td>
+					  	<td>{{track.name}}</td>
+					  	<td>{{track.duration}}</td>
+					  	<td><audio controls src="{{track.previewUrl}}">Il tuo browser non supporta l'elemento audio</audio></td>
+					  </tr>
+				  </tbody>
+				</table>
 			</div>
 		</div>
 	</div>	

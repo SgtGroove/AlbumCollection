@@ -13,9 +13,10 @@ import { Track } from '../../model/track';
 export class AlbumInfoComponent implements OnInit {
   sub:any;
   album: Album;
+  audio = new Audio();
 
   constructor(private artistService : ArtistSearchService, private route: ActivatedRoute) {
-   }
+  }
 
   ngOnInit() {  
       this.sub = this.route.params.subscribe(params => {
@@ -60,16 +61,10 @@ export class AlbumInfoComponent implements OnInit {
     return album;
   }
 
-  playStopTrack(url:string, element: Element){
-    var trackList   = document.getElementById('#tracksList');
-    var elemPlaying = trackList.getElementsByClassName('playing');
-    if(elemPlaying ==  null){
-      var audio = new Audio(url);
-      audio.play();
-      element.className += " playingTrack";
-    }
-    else{
-
-    }
+  playStopTrack(url:string, event: Event){   
+    this.audio.pause();
+    this.audio.src = url;
+    this.audio.load();
+    this.audio.play();
   }
 }
