@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Album } from '../../model/album';
+import { Track } from '../../model/track';
 import { ArtistSearchService } from "../../service/artist-search.service";
 import { ActivatedRoute } from '@angular/router';
 
@@ -21,13 +22,25 @@ export class AlbumlistComponent implements OnInit {
       this.sub = this.route.params.subscribe(params => {
         // Prendo la variabile dal path e la uso per caricarmi gli album
         let artistId = params['artistId'];
-        this.artistService.getAlbumsFromArtist(artistId)
-                           .subscribe(
-                               response => {
-                                 this.albums = response.items;
-                                 this.filterAlbumList(this.albums);
-                               },
-                               err => { console.log(err); });
+        if(artistId ==  undefined){
+            // Se non è presente l'artista prendo una stringa di ricerca
+            let albumName = params['searchString'];
+            this.artistService.getAlbums(albumName)
+                               .subscribe(
+                                   response => {
+                                     this.albums = response.albums.items;
+                                   },
+                                   err => {console.log(err);} );
+        }
+        else {
+              this.artistService.getAlbumsFromArtist(artistId)
+                                   .subscribe(
+                                       response => {
+                                         this.albums = response.items;
+                                         this.filterAlbumList(this.albums);
+                                       },
+                                       err => { console.log(err); });
+        }
     });
   }
 

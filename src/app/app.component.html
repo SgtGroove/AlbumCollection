@@ -19,18 +19,18 @@
       <form class="navbar-form navbar-left">
         <div class="form-group">
         	<input class="form-control mr-sm-2" type="text" placeholder="Artist Search" #artistName>
-			<button type="button" class="btn btn-primary" aria-label="Left Align" (click)="clicked(artistName.value)">
-				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Artist Search
-			</button>	
-		</div>
+    			<button type="button" class="btn btn-primary" aria-label="Left Align" (click)="clicked(artistName.value)">
+    				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Artist Search
+    			</button>	
+		    </div>
       </form>
       <form class="navbar-form navbar-left">
 	        <div class="form-group">
-	        	<input class="form-control mr-sm-2" type="text" placeholder="Album Search">
-				<button type="button" class="btn btn-primary" aria-label="Left Align" (click)="clicked()">
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Album Search
-				</button>	
-			</div>
+	        	<input class="form-control mr-sm-2" type="text" placeholder="Album Search" #albumName>
+    				<button type="button" class="btn btn-primary" aria-label="Left Align" (click)="clickedAlbum(albumName.value)">
+    					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Album Search
+    				</button>	
+			    </div>
 	  </form>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

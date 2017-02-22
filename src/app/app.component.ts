@@ -18,5 +18,8 @@ export class AppComponent {
 		if(artistName != "")
 			this.parentRouter.navigateByUrl('/artists/search/' + artistName);
 	  }
-	
+	clickedAlbum(albumName : string) {
+		if(albumName != "")
+			this.parentRouter.navigateByUrl('/albums/search/' + albumName);
+	  }
 }
