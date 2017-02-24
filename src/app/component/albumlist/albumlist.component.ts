@@ -18,7 +18,32 @@ export class AlbumlistComponent implements OnInit {
    }
 
   ngOnInit() {  
+      this.sub = this.route.params.subscribe(params => {
+          let artistId = params['artistId'];
+          if(artistId !=  undefined){
+              this.artistService.getAlbumsFromArtist(artistId)
+                                   .subscribe(
+                                       response => {
+                                         this.albums = response.items;
+                                         this.filterAlbumList(this.albums);
+                                       },
+                                       err => { console.log(err); });
+          }
+          else {
+            let albumName = params['albumName'];
+            let artistName = params['artistName'];
+            let year = params['year'];
 
+            this.artistService.searchAlbumArtist(artistName, albumName, year)
+                              .subscribe(
+                                     response => {
+                                       this.albums = response.albums.items;
+                                       },
+                              err => {console.log(err);} );
+          }
+      });
+
+/*
       this.sub = this.route.params.subscribe(params => {
         // Prendo la variabile dal path e la uso per caricarmi gli album
         let artistId = params['artistId'];
@@ -29,6 +54,7 @@ export class AlbumlistComponent implements OnInit {
                                .subscribe(
                                    response => {
                                      this.albums = response.albums.items;
+                                     this.adjustPath = "../";
                                    },
                                    err => {console.log(err);} );
         }
@@ -38,10 +64,12 @@ export class AlbumlistComponent implements OnInit {
                                        response => {
                                          this.albums = response.items;
                                          this.filterAlbumList(this.albums);
+                                         this.adjustPath = "";
                                        },
                                        err => { console.log(err); });
         }
     });
+*/
   }
 
   filterAlbumList(albums: Album[]){

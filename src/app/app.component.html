@@ -18,18 +18,12 @@
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">
-        	<input class="form-control mr-sm-2" type="text" placeholder="Artist Search" #artistName>
-    			<button type="button" class="btn btn-primary" aria-label="Left Align" (click)="clicked(artistName.value)">
-    				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Artist Search
-    			</button>	
-		    </div>
-      </form>
-      <form class="navbar-form navbar-left">
-	        <div class="form-group">
-	        	<input class="form-control mr-sm-2" type="text" placeholder="Album Search" #albumName>
-    				<button type="button" class="btn btn-primary" aria-label="Left Align" (click)="clickedAlbum(albumName.value)">
+        	<input class="form-control inputNormal" type="text" placeholder="Artist Search" #artistName>
+	        <input class="form-control inputNormal" type="text" placeholder="Album Search" #albumName>
+          <input class="form-control inputSmall" type="text" placeholder="Year" #year>
+    			<button type="button" class="btn btn-primary" aria-label="Left Align" (click)="clicked(artistName.value, albumName.value, year.value)">
     					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Album Search
-    				</button>	
+    			</button>	
 			    </div>
 	  </form>
     </div><!-- /.navbar-collapse -->

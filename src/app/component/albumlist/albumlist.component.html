@@ -4,11 +4,12 @@
 			<img src="{{album.images[0]['url']}}" class='imageAlbum' *ngIf="album.images[0]" />
 		</div>
 		<div class='col-md-4 albumName'>
+			<a href = 'https://play.spotify.com/album/{{album.id}}' target="_blank">{{album.artists[0].name}}</a><br />
 			<a href = 'https://play.spotify.com/album/{{album.id}}' target="_blank">{{album.name}}</a>
 		</div>
 		<div class='col-md-4'>
 			<div class='row'>
-				<a [routerLink]="['../../albumInfo/' + album.id]">
+				<a [routerLink]="[ '/albumInfo/' + album.id]">
 					<button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;Album Info</button>
 				</a>
 			</div>

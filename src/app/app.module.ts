@@ -17,19 +17,19 @@ const appRoutes: Routes = [
     data: { title: 'Albums Search Result' }
   },
   {
-    path: 'albums/search/:searchString',
-    component: AlbumlistComponent,
-    data: { title: 'Albums Search Result' }
-  },
-  {
     path: 'albumInfo/:albumId',
     component: AlbumInfoComponent,
     data: { title: 'Album Info' }
   },
   {
-    path: 'artists/search/:searchString',
+    path: 'artists/:searchString',
     component: SearchResultsComponent,
     data: { title: 'Artists Search Result' }
+  },
+  {
+    path: 'albums/:albumName/artist/:artistName/year/:year',
+    component: AlbumlistComponent,
+    data: { title: 'Albums Search Result' }
   }
 ];
 @NgModule({
