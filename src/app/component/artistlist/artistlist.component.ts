@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ArtistSearchService } from "../../service/artist-search.service";
+import { ArtistSearchService } from "../../service/artist-search/artist-search.service";
 import { Artista } from '../../model/artista';
 
 @Component({
-  selector: 'search-results',
-  templateUrl: './search-results.component.html',
-  styleUrls: ['./search-results.component.css'],
+  selector: 'artistlist',
+  templateUrl: './artistlist.component.html',
+  styleUrls: ['./artistlist.component.css'],
   providers: [ArtistSearchService]
 })
 export class SearchResultsComponent implements OnInit {

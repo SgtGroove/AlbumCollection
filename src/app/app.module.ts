@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import { SearchComponent } from './component/search/search.component';
-import { SearchResultsComponent } from './component/search-results/search-results.component';
+import { SearchResultsComponent } from './component/artistlist/artistlist.component';
 import { AlbumlistComponent } from './component/albumlist/albumlist.component';
 import { AlbumInfoComponent } from './component/album-info/album-info.component';
+import { LoginComponent } from './component/login/login.component';
 
 
 const appRoutes: Routes = [
@@ -30,15 +30,20 @@ const appRoutes: Routes = [
     path: 'albums/:albumName/artist/:artistName/year/:year',
     component: AlbumlistComponent,
     data: { title: 'Albums Search Result' }
+  }  ,
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: { title: 'Login Page' }
   }
 ];
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent,
     SearchResultsComponent,
     AlbumlistComponent,
-    AlbumInfoComponent
+    AlbumInfoComponent,
+    LoginComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

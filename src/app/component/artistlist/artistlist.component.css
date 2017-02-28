@@ -20,4 +20,12 @@
 	margin-bottom:5px;
 	width:150px;
 	height:170px;
+
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+}
+
+.image-not-found {
+	border:1px solid grey;
 }

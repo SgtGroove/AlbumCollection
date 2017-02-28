@@ -1,7 +1,8 @@
-<div class='container' *ngIf="artists?.length > 0">
+<div class='container pddTop70' *ngIf="artists?.length > 0">
 	<div class='row artistRow' *ngFor="let artist of artists">
 		<div class='col-md-4 artistPhoto'>
 			<img src="{{artist.images[0]['url']}}" class='imageArtist' *ngIf="artist.images[0]"/>
+			<img src="../../images/image-not-found.jpg" class='imageArtist image-not-found' *ngIf="artist.images[0] == undefined"/>
 		</div>
 		<div class='col-md-4 artistName'>
 			<a href = 'https://play.spotify.com/artist/{{artist.id}}' target="_blank">{{artist.name}}</a>
