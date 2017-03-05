@@ -7,16 +7,21 @@
 	height:180px;
 }
 
-.albumName
-{
-	padding-top:5%;
-	height: 180px;
+.albumBox {
+	border: 1px solid blue;
+	text-align:center;
 	font-size:18px;
 }
 
-.imageAlbum
-{
-	height:170px;
+.albumBox img{
+	height: 180px;
 	width: 180px;
+	display: block;
+    margin: 0 auto;
 }
 
+.boxText
+{
+	margin-top: 10px;
+	margin-bottom: 5px;
+}

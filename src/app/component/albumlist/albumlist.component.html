@@ -1,4 +1,18 @@
-<div class='container' *ngIf="albums?.length > 0">
+<div class='container pddTop70' *ngIf="albums?.length > 0">
+	<div class='row' *ngFor="let tripleAlbum of albumsView; let i = index">
+	        <div *ngFor="let album of tripleAlbum;" class='col-md-4 albumBox'>
+	        	<div>
+	        		<img src="{{album.images[0]['url']}}" *ngIf="album.images[0]" />
+	        	</div>
+	        	<div class='boxText'>
+	        		<div>{{album.artists[0].name}}</div>
+	        		<div>{{album.name}}</div>
+	        	</div>
+	</div>
+</div>
+<router-outlet></router-outlet>
+
+	<!-- Contenitore vecchio riga per riga
 	<div class='row albumRow' *ngFor="let album of albums">
 		<div class='col-md-4'>
 			<img src="{{album.images[0]['url']}}" class='imageAlbum' *ngIf="album.images[0]" />
@@ -15,5 +29,4 @@
 			</div>
 		</div>
 	</div>
-</div>
-<router-outlet></router-outlet>
+	-->

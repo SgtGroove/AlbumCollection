@@ -13,6 +13,8 @@ import { ActivatedRoute } from '@angular/router';
 export class AlbumlistComponent implements OnInit {
   sub:any;
   albums: Album[];
+  albumsView: Array<Array<Album>[]>;
+  elementsForRow: number = 3;
 
   constructor(private artistService : ArtistSearchService, private route: ActivatedRoute) {
    }
@@ -26,6 +28,7 @@ export class AlbumlistComponent implements OnInit {
                                        response => {
                                          this.albums = response.items;
                                          this.filterAlbumList(this.albums);
+                                         this.albumsView = this.createAlbumView(this.albums);
                                        },
                                        err => { console.log(err); });
           }
@@ -37,39 +40,12 @@ export class AlbumlistComponent implements OnInit {
             this.artistService.searchAlbumArtist(artistName, albumName, year)
                               .subscribe(
                                      response => {
-                                       this.albums = response.albums.items;
+                                        this.albums = response.albums.items;
+                                        this.albumsView = this.createAlbumView(this.albums);
                                        },
                               err => {console.log(err);} );
           }
       });
-
-/*
-      this.sub = this.route.params.subscribe(params => {
-        // Prendo la variabile dal path e la uso per caricarmi gli album
-        let artistId = params['artistId'];
-        if(artistId ==  undefined){
-            // Se non è presente l'artista prendo una stringa di ricerca
-            let albumName = params['searchString'];
-            this.artistService.getAlbums(albumName)
-                               .subscribe(
-                                   response => {
-                                     this.albums = response.albums.items;
-                                     this.adjustPath = "../";
-                                   },
-                                   err => {console.log(err);} );
-        }
-        else {
-              this.artistService.getAlbumsFromArtist(artistId)
-                                   .subscribe(
-                                       response => {
-                                         this.albums = response.items;
-                                         this.filterAlbumList(this.albums);
-                                         this.adjustPath = "";
-                                       },
-                                       err => { console.log(err); });
-        }
-    });
-*/
   }
 
   filterAlbumList(albums: Album[]){
@@ -84,4 +60,20 @@ export class AlbumlistComponent implements OnInit {
       return isNew;
     });
   }
+
+  createAlbumView(albums: Album[]){
+      let arrOut = [];
+      let triple = [];
+      for (let i = 1; i <= this.albums.length; i++) 
+      {
+        triple.push(this.albums[i - 1]);
+        if (i % this.elementsForRow === 0) 
+        {
+            arrOut.push(triple);
+            triple= [];
+        }
+      }  
+      return arrOut; 
+  }
+
 }
