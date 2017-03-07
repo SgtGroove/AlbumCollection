@@ -6,3 +6,11 @@
 .pddTop70 {
   padding-top: 60px;
 }
+
+.marginTop10
+{
+	margin-top: 10px;
+}
+body {
+    background-image: url(../images/bg.png);
+}

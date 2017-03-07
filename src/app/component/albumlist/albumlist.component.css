@@ -7,21 +7,49 @@
 	height:180px;
 }
 
-.albumBox {
-	border: 1px solid blue;
-	text-align:center;
-	font-size:18px;
+.boxText
+{
+	margin-top: 10px;
+	margin-bottom: 5px;
 }
 
-.albumBox img{
+.albumBox {
+	width: 65%;
+	margin:auto;
+
+	text-align:center;
+	font-size:18px;
+	padding-top:10px;
+	
+	background-color: #f6f9fa;; /*#f5f5f5;*/
+	border: 1px solid #a3a3a3;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+.albumBox img {
 	height: 180px;
 	width: 180px;
 	display: block;
     margin: 0 auto;
 }
 
-.boxText
+.albumBox a {
+	color: #175071; /*#08c;*/
+}
+
+.albumButtonDiv
 {
-	margin-top: 10px;
-	margin-bottom: 5px;
+	height: 48px;
+}
+
+.albumButtonDiv img {
+	width:48px;
+	height:48px;
+}
+
+.iconContainer
+{
+	height:48px;
 }

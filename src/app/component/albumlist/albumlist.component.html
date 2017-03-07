@@ -1,32 +1,26 @@
 <div class='container pddTop70' *ngIf="albums?.length > 0">
 	<div class='row' *ngFor="let tripleAlbum of albumsView; let i = index">
-	        <div *ngFor="let album of tripleAlbum;" class='col-md-4 albumBox'>
-	        	<div>
-	        		<img src="{{album.images[0]['url']}}" *ngIf="album.images[0]" />
-	        	</div>
-	        	<div class='boxText'>
-	        		<div>{{album.artists[0].name}}</div>
-	        		<div>{{album.name}}</div>
-	        	</div>
-	</div>
-</div>
-<router-outlet></router-outlet>
+	        <div *ngFor="let album of tripleAlbum;" class='col-md-4 marginTop10'>
+	        	<div class='albumBox'>
+		        	<div>
+		        		<img src="{{album.images[0]['url']}}" *ngIf="album.images[0]" />
+		        	</div>
+		        	<div class='boxText'>
+		        		<div><a [routerLink]="['../../' + album.artists[0].id + '/albums']">{{album.artists[0].name}}</a></div>
+		        		<div>{{album.name}}</div>
+		        	</div>
+		        	<div class='iconContainer'>
+		        			<div class='col-md-4 albumButtonDiv'>
+		        				<a [routerLink]="['../../albumInfo/' + album.id]"><img src='../images/tracks.png' /></a>
+		        			</div>
+		        			<div class='col-md-4 albumButtonDiv' style='background-color:blue'>
 
-	<!-- Contenitore vecchio riga per riga
-	<div class='row albumRow' *ngFor="let album of albums">
-		<div class='col-md-4'>
-			<img src="{{album.images[0]['url']}}" class='imageAlbum' *ngIf="album.images[0]" />
-		</div>
-		<div class='col-md-4 albumName'>
-			<a href = 'https://play.spotify.com/album/{{album.id}}' target="_blank">{{album.artists[0].name}}</a><br />
-			<a href = 'https://play.spotify.com/album/{{album.id}}' target="_blank">{{album.name}}</a>
-		</div>
-		<div class='col-md-4'>
-			<div class='row'>
-				<a [routerLink]="[ '/albumInfo/' + album.id]">
-					<button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;Album Info</button>
-				</a>
-			</div>
+		        			</div>
+		        			<div class='col-md-4 albumButtonDiv' style='background-color:yellow'>
+
+		        			</div>
+		        		</div>
+		        </div>	
 		</div>
 	</div>
-	-->
+<router-outlet></router-outlet>
