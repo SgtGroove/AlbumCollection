@@ -44,12 +44,50 @@
 	height: 48px;
 }
 
+
 .albumButtonDiv img {
 	width:48px;
 	height:48px;
 }
 
+
 .iconContainer
 {
 	height:48px;
+}
+
+#cfLeft {
+  position:relative;
+  margin:0 auto;
+}
+
+#cfLeft img {
+  position:absolute;
+  /* left:0; */
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#cfLeft img.top:hover {
+  opacity:0;
+}
+
+#cfRight {
+  position:relative;
+  margin:0 auto;
+}
+
+#cfRight img {
+  position:absolute;
+  /* left:0; */
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#cfRight img.top:hover {
+  opacity:0;
 }

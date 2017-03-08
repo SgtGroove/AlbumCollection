@@ -11,13 +11,18 @@
 		        	</div>
 		        	<div class='iconContainer'>
 		        			<div class='col-md-4 albumButtonDiv'>
-		        				<a [routerLink]="['../../albumInfo/' + album.id]"><img src='../images/tracks.png' /></a>
+		        				<a [routerLink]="['../../albumInfo/' + album.id]" id='cfLeft' title='Album Tracks'>
+		        					<img class="bottom" src='../images/tracks_blue.png' />
+		        					<img class="top" src='../images/tracks.png' />
+		        				</a>
 		        			</div>
 		        			<div class='col-md-4 albumButtonDiv' style='background-color:blue'>
-
 		        			</div>
-		        			<div class='col-md-4 albumButtonDiv' style='background-color:yellow'>
-
+		        			<div class='col-md-4 albumButtonDiv'>
+		        				<a id='cfRight' title='Album Tracks'>
+		        					<img class="bottom" src='../images/add_green.png' />
+		        					<img class="top" src='../images/add.png' />
+		        				</a>
 		        			</div>
 		        		</div>
 		        </div>	
