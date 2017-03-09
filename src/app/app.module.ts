@@ -8,6 +8,7 @@ import { SearchResultsComponent } from './component/artistlist/artistlist.compon
 import { AlbumlistComponent } from './component/albumlist/albumlist.component';
 import { AlbumInfoComponent } from './component/album-info/album-info.component';
 import { LoginComponent } from './component/login/login.component';
+import { AuthenticationService } from './service/auth/auth.service';
 
 
 const appRoutes: Routes = [
@@ -51,7 +52,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

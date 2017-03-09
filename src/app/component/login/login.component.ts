@@ -1,25 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
- 
 import { AuthenticationService } from '../../service/auth/auth.service';
  
 @Component({
-    templateUrl: './login.component.html',
-    providers: [AuthenticationService]
+    templateUrl: './login.component.html'
+    //,providers: [AuthenticationService]
+
 })
  
 export class LoginComponent implements OnInit {
     model: any = {};
     loading = false;
     error = '';
- 
-    constructor(
-        private router: Router,
-        private authenticationService: AuthenticationService) { }
+    // router : Router;
+    // authenticationService:AuthenticationService;
+
+    constructor(private router: Router, private authenticationService: AuthenticationService) {
+        // this.router = router;
+        // this.authenticationService = authenticationService;
+     }
  
     ngOnInit() {
         // reset login status
-        this.authenticationService.logout();
+        //this.authenticationService.logout();
     }
  
     login() {
@@ -27,8 +30,10 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(this.model.username, this.model.password)
             .subscribe(result => {
                 if (result === true) {
-                    // login successful
-                    this.router.navigate(['/']);
+                   this.authenticationService.changeLoginString();
+                   //this.router.navigate(['/']);                   
+                   this.error = 'Username or password are correct';
+                   this.loading = false;
                 } else {
                     // login failed
                     this.error = 'Username or password is incorrect';

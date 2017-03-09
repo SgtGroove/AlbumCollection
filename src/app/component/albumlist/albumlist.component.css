@@ -29,8 +29,8 @@
 }
 
 .albumBox img {
-	height: 180px;
-	width: 180px;
+	max-height: 180px;
+	max-width: 180px;
 	display: block;
     margin: 0 auto;
 }
@@ -46,8 +46,8 @@
 
 
 .albumButtonDiv img {
-	width:48px;
-	height:48px;
+	max-width:48px;
+	max-height:48px;
 }
 
 
@@ -56,12 +56,12 @@
 	height:48px;
 }
 
-#cfLeft {
+.cf {
   position:relative;
   margin:0 auto;
 }
 
-#cfLeft img {
+.cf img {
   position:absolute;
   /* left:0; */
   -webkit-transition: opacity 0.5s ease-in-out;
@@ -70,24 +70,7 @@
   transition: opacity 0.5s ease-in-out;
 }
 
-#cfLeft img.top:hover {
+.cf img.top:hover {
   opacity:0;
 }
 
-#cfRight {
-  position:relative;
-  margin:0 auto;
-}
-
-#cfRight img {
-  position:absolute;
-  /* left:0; */
-  -webkit-transition: opacity 0.5s ease-in-out;
-  -moz-transition: opacity 0.5s ease-in-out;
-  -o-transition: opacity 0.5s ease-in-out;
-  transition: opacity 0.5s ease-in-out;
-}
-
-#cfRight img.top:hover {
-  opacity:0;
-}

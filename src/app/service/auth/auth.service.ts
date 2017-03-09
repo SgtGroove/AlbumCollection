@@ -1,12 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Component,Injectable,Input,Output,EventEmitter } from '@angular/core';
 import { Http, Headers, Response, RequestOptions, ResponseContentType } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map'
  
 @Injectable()
 export class AuthenticationService {
+    @Output() fire:EventEmitter<any>=new EventEmitter();
     public token: string;
- 
+
     constructor(private http: Http) {
         // set token if saved in local storage
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -39,5 +40,13 @@ export class AuthenticationService {
         // clear token remove user from local storage to log user out
         this.token = null;
         localStorage.removeItem('currentUser');
+    }
+
+    changeLoginString() {
+       this.fire.emit(true);
+    }
+
+    getEmittedValue() {
+        return this.fire;
     }
 }
