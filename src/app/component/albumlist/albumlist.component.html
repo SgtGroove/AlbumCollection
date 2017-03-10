@@ -6,20 +6,20 @@
 		        		<img src="{{album.images[0]['url']}}" *ngIf="album.images[0]" />
 		        	</div>
 		        	<div class='boxText'>
-		        		<div><a [routerLink]="['../../' + album.artists[0].id + '/albums']">{{album.artists[0].name}}</a></div>
+		        		<div><a [routerLink]="['/' + album.artists[0].id + '/albums']">{{album.artists[0].name}}</a></div>
 		        		<div>{{album.name}}</div>
 		        	</div>
 		        	<div class='iconContainer'>
 		        			<div class='col-md-4 col-sm-4 col-xs-4 albumButtonDiv'>
-		        				<a [routerLink]="['../../albumInfo/' + album.id]" class='cf' title='Album Tracks'>
+		        				<a [routerLink]="['/albumInfo/' + album.id]" class='cf' title='Album Tracks'>
 		        					<img class="bottom" src='../images/tracks_blue.png' />
 		        					<img class="top" src='../images/tracks.png' />
 		        				</a>
 		        			</div>
 		        			<div class='col-md-4 col-sm-4 col-xs-4 albumButtonDiv' style='background-color:blue'>
 		        			</div>
-		        			<div class='col-md-4 col-sm-4 col-xs-4 albumButtonDiv padLeft5'>
-		        				<a class='cf' title='Add to your collection'>
+		        			<div class='col-md-4 col-sm-4 col-xs-4 albumButtonDiv'>
+		        				<a class='cf' [routerLink]="['/addAlbum/' + album.id]" title='Add to your collection'>
 		        					<img class="bottom" src='../images/add_green.png' />
 		        					<img class="top" src='../images/add.png' />
 		        				</a>

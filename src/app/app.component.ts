@@ -3,27 +3,23 @@ import { AuthenticationService } from './service/auth/auth.service';
 import { Component, Directive } from '@angular/core';
 import { Router } from '@angular/router';
 import { Artista } from './model/artista';
-import { LoginComponent }  from './component/login/login.component';
+import { LoginComponent } from './component/login/login.component';
+import { Subscription } from "rxjs/Rx";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
-  // ,providers: [AuthenticationService]
+  ,providers: [AuthenticationService]
 })
 
 export class AppComponent{
 	isLogged : boolean;
-	// router: Router;
-	// authenticationService :AuthenticationService;
-	subscription : any;
+	subscription : Subscription;
 
 	constructor(private router: Router, private authenticationService: AuthenticationService) {
-		// this.router=router;
-		// this.authenticationService = authenticationService;
-				
-		//	this.subscription = this.authenticationService.getEmittedValue()
-		//								  .subscribe(item => this.isLogged = item );							
+		this.subscription = this.authenticationService.getEmittedValue()
+				.subscribe(item => this.isLogged = item);			
 	}
 
 	clicked(artistName : string, albumName : string, year: string) {
@@ -48,15 +44,4 @@ export class AppComponent{
 				}
 			}
 		}
-
-	ngOnInit() {
-		//this.subscription = this.authenticationService.getEmittedValue()
-		this.subscription = this.authenticationService.getEmittedValue()
-			.subscribe(item => this.isLogged=item);
-  	}
-
-	logout(): void {
-        localStorage.removeItem('currentUser');
-		this.isLogged = false;
-    }	
 }

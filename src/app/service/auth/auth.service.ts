@@ -42,8 +42,8 @@ export class AuthenticationService {
         localStorage.removeItem('currentUser');
     }
 
-    changeLoginString() {
-       this.fire.emit(true);
+    changeLoginString(what: boolean) {
+       this.fire.emit(what);
     }
 
     getEmittedValue() {

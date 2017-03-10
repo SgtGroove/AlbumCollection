@@ -29,10 +29,11 @@
 }
 
 .albumBox img {
-	max-height: 180px;
-	max-width: 180px;
+	position: relative;
 	display: block;
-    margin: 0 auto;
+	width: 95%;
+	height: 95%;
+    margin: auto;
 }
 
 .albumBox a {
@@ -41,15 +42,9 @@
 
 .albumButtonDiv
 {
+	padding-right:0px;
 	height: 48px;
 }
-
-
-.albumButtonDiv img {
-	max-width:48px;
-	max-height:48px;
-}
-
 
 .iconContainer
 {
@@ -62,8 +57,9 @@
 }
 
 .cf img {
+  width:48px;
+  height:48px;
   position:absolute;
-  /* left:0; */
   -webkit-transition: opacity 0.5s ease-in-out;
   -moz-transition: opacity 0.5s ease-in-out;
   -o-transition: opacity 0.5s ease-in-out;

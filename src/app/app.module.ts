@@ -9,7 +9,9 @@ import { AlbumlistComponent } from './component/albumlist/albumlist.component';
 import { AlbumInfoComponent } from './component/album-info/album-info.component';
 import { LoginComponent } from './component/login/login.component';
 import { AuthenticationService } from './service/auth/auth.service';
-
+import { LogoutComponent } from './component/logout/logout.component';
+import { AuthGuard } from './guard/authguard.service';
+import { AddAlbumComponent } from './component/add-album/add-album.component';
 
 const appRoutes: Routes = [
   {
@@ -36,6 +38,18 @@ const appRoutes: Routes = [
     path: 'login',
     component: LoginComponent,
     data: { title: 'Login Page' }
+  },
+  {
+    path: 'logout',
+    component: LogoutComponent,
+    data: { title: 'Logout Page' }
+  }
+  ,
+  {
+    path: 'addAlbum/:albumId',
+    canActivate: [AuthGuard],
+    component: AddAlbumComponent,
+    data: { title: 'Add Album' }
   }
 ];
 @NgModule({
@@ -44,7 +58,9 @@ const appRoutes: Routes = [
     SearchResultsComponent,
     AlbumlistComponent,
     AlbumInfoComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent,
+    AddAlbumComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -52,7 +68,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule
   ],
-  providers: [AuthenticationService],
+  providers: [AuthGuard, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

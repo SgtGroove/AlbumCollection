@@ -3,6 +3,8 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { Track } from '../../model/track';
+import { Album } from '../../model/album';
 
 @Injectable()
 export class ArtistSearchService {
@@ -19,7 +21,7 @@ export class ArtistSearchService {
   getAlbumInfo(albumId: string)
   {
     return this.http.get('https://api.spotify.com/v1/albums/' + albumId)
-                         .map((res:Response) => res.json())
+                         .map((res:Response) => this.filtraAlbum(res.json()))
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
@@ -56,5 +58,35 @@ export class ArtistSearchService {
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
                          
   }
+
+  filtraAlbum(response: any){
+      var d = new Date(response.release_date);
+      let year = d.getFullYear();
+      let id = response.id;
+      let name = response.name;
+      let artist = response.artists[0].name;
+      let tracks = Array<Track>();
+      let imageUrl = '';
+      if(response.images[0] != undefined) {
+        imageUrl = response.images[0].url;
+      }
+
+      for (var i = 0; i < response.tracks.items.length; i++) {  
+        var trackId = response.tracks.items[i].id;
+        var trackName = response.tracks.items[i].name;
+        var albumName = name;
+        var artistName = response.artists[0].name;
+        var duration  = ((response.tracks.items[i].duration_ms)/60000).toFixed(2);
+        var track_number = response.tracks.items[i].track_number;
+        var previewUrl  = response.tracks.items[i].preview_url;
+        var uri  = response.tracks.items[i].uri;
+        let track = new Track(trackId, trackName, albumName, artistName, duration, track_number,  previewUrl, uri);
+
+        tracks.push(track);
+      }
+
+      let album = new Album(id, name, artistName, tracks, year, imageUrl);
+      return album;
+    }
 
 }
