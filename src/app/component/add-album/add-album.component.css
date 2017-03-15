@@ -11,10 +11,57 @@
 {
 	color: #3A539B;
 	margin-top:5px;
-	text-align:center;
+	text-align: center;
+	width:100%;
 }
 
 .infoBox {
     font-size:18px;
-    text-align: left;
+}
+
+.infoBox div div {
+    text-align: center;
+}
+
+.infoBox textarea {
+	width:100%;
+
+}
+.infoBox .row
+{
+	text-align:center;
+}
+
+.buttonRow {
+	padding-top:10px;
+}
+
+.infoBox row div {
+	padding-right:0px;
+	padding-left:0px;
+}
+
+.infoBox div div:nth-child(1){
+	text-align:right;
+}
+.infoBox div div:nth-child(2){
+	text-align:left;
+}
+
+.datepicker-input {
+	/* Override dei css del pacchetto */
+	font-size:18px !important; 
+	width:20% !important;
+}
+
+.paddingTop10 {
+	padding-top:10px;
+}
+
+.myDatePicker .datepicker-input
+{
+	font-size: 18px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
 }

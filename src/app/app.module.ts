@@ -12,6 +12,7 @@ import { AuthenticationService } from './service/auth/auth.service';
 import { LogoutComponent } from './component/logout/logout.component';
 import { AuthGuard } from './guard/authguard.service';
 import { AddAlbumComponent } from './component/add-album/add-album.component';
+import { MyDatePickerModule } from 'mydatepicker';
 
 const appRoutes: Routes = [
   {
@@ -66,7 +67,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MyDatePickerModule 
   ],
   providers: [AuthGuard, AuthenticationService],
   bootstrap: [AppComponent]

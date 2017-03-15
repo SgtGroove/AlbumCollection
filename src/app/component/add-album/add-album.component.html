@@ -1,31 +1,42 @@
-<div class='col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1 centralBox' *ngIf='album'>
+<div class='col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1 centralBox fontsize18' *ngIf='album'>
 	<div class='row'>
-		<div class='col-md-4 col-xs-4 '>
+		<div class='col-md-8 col-md-offset-2 col-xs-12 '>
 			<img src="{{album.imageUrl}}" class='imageArtist' *ngIf="album.imageUrl"/>
 		</div>
-		<div class='col-md-4 col-xs-4'>
-			<div class='row'>
-				<div class='infoBox'>
-					<div><span class='title'>Artist:</span> {{album.artist}}</div>
-                    <div><span class='title'>Album:</span> {{album.name}}</div>
-					<div><span class='title'>Year:</span> {{album.year}}</div>
-                    <div><span class='title'>Note:</span> </div>
-				</div>	
-				<table class="table">
-				  <thead>
-				    <tr>
-				      <th>#</th>
-				      <th>Name</th>
-				    </tr>
-				  </thead>
-				  <tbody id='trackResults'>
-					  <tr  *ngFor="let track of album.tracks">
-					  	<td>{{track.track_number}}</td>
-					  	<td>{{track.name}}</td>
-					  </tr>
-				  </tbody>
-				</table>
-			</div>
+		<div class='col-md-12 col-xs-12 infoBox'>
+				<div class='row'>
+						<div class='col-md-3 col-md-offset-2 col-xs-3'><span class='title'>Artist:</span></div>
+						<div class='col-md-6 col-xs-8 '>{{album.artist}}</div>
+				</div>
+				<div class='row'>
+						<div class='col-md-3 col-md-offset-2 col-xs-3'><span class='title'>Album:</span></div>
+						<div class='col-md-6 col-xs-8'>{{album.name}}</div>
+				</div>
+				<div class='row'>
+						<div class='col-md-3 col-md-offset-2 col-xs-3'><span class='title'>Year:</span></div>
+						<div class='col-md-6 col-xs-8'>{{album.year}}</div>
+				</div>
+				<div class='row'>
+						<div class='col-md-3 col-md-offset-2 col-xs-3'><span class='title'>Date:</span></div>
+						<div class='col-md-6 col-xs-12' style='text-align:center'>
+								<form #myForm="ngForm" novalidate>
+									<my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
+								</form>
+						</div>
+				</div>
+				<div class='row paddingTop10'>
+						<div class='col-md-3 col-md-offset-2 col-xs-3'><span class='title'>Note:</span></div>
+						<div class='col-md-5 col-xs-8'>
+							<textarea rows='3' class="form-control"></textarea>
+						</div>
+				</div>
+				<div class='row buttonRow'>
+						<div class='col-md-3 col-md-offset-4 col-xs-offset-4 col-xs-4 viewBtnDiv'>
+								<button class='btn btn-primary'><span class='glyphicon glyphicon-search'></span>&nbsp;View</button>
+						</div>
+						<div class='col-md-3 col-xs-4 addBtnDiv'>
+								<button class='btn btn-success'><span class='glyphicon glyphicon-plus'></span>&nbsp;Add</button>							
+						</div>
+				</div>
 		</div>
-	</div>	
 </div>
