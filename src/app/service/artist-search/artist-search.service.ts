@@ -49,7 +49,6 @@ export class ArtistSearchService {
         return this.http.get('https://api.spotify.com/v1/search?q=' + artist +'&type=artist')
                          .map((res:Response) => res.json())
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
-                         
   }
 
   getAlbums(album: string) {
@@ -64,7 +63,7 @@ export class ArtistSearchService {
       let year = d.getFullYear();
       let id = response.id;
       let name = response.name;
-      let artist = response.artists[0].name;
+      let artist = response.artists[0];
       let tracks = Array<Track>();
       let imageUrl = '';
       if(response.images[0] != undefined) {
@@ -85,8 +84,24 @@ export class ArtistSearchService {
         tracks.push(track);
       }
 
-      let album = new Album(id, name, artistName, tracks, year, imageUrl);
+      let album = new Album(id, name, artist, tracks, year, imageUrl);
       return album;
     }
+ 
+ 
+ 
+  addAlbum(currentUser:string, artistName : string, artistId: string, albumName: string, albumId: string, year: number, note: string) {
+        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        let options = new RequestOptions({ headers: headers, method: "POST"}); 
+        return this.http.post('http://www.consigliamiundisco.it/rest/addAlbum', JSON.stringify({ currentUser: currentUser, 
+                                                                                                 artistName: artistName,
+                                                                                                 artistId: artistId,
+                                                                                                 abumName: albumName,
+                                                                                                 albumId: albumId,
+                                                                                                 year: year,
+                                                                                                note:note }), options)
+                         .map((res:Response) => res.json())
+                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
 
 }

@@ -1,4 +1,4 @@
-<div class='col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1 centralBox fontsize18' *ngIf='album'>
+<div class='col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1 centralBox fontsize18' *ngIf='album && !addingAlbum'>
 	<div class='row'>
 		<div class='col-md-8 col-md-offset-2 col-xs-12 '>
 			<img src="{{album.imageUrl}}" class='imageArtist' *ngIf="album.imageUrl"/>
@@ -6,7 +6,7 @@
 		<div class='col-md-12 col-xs-12 infoBox'>
 				<div class='row'>
 						<div class='col-md-3 col-md-offset-2 col-xs-3'><span class='title'>Artist:</span></div>
-						<div class='col-md-6 col-xs-8 '>{{album.artist}}</div>
+						<div class='col-md-6 col-xs-8 '>{{album.artist.name}}</div>
 				</div>
 				<div class='row'>
 						<div class='col-md-3 col-md-offset-2 col-xs-3'><span class='title'>Album:</span></div>
@@ -18,7 +18,7 @@
 				</div>
 				<div class='row'>
 						<div class='col-md-3 col-md-offset-2 col-xs-3'><span class='title'>Date:</span></div>
-						<div class='col-md-6 col-xs-offset-2 col-xs-8' style='text-align:center'>
+						<div class='col-md-6 col-xs-8' style='text-align:center'>
 								<form #myForm="ngForm" novalidate>
 									<my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
 								</form>
@@ -26,17 +26,34 @@
 				</div>
 				<div class='row paddingTop10'>
 						<div class='col-md-3 col-md-offset-2 col-xs-3'><span class='title'>Note:</span></div>
-						<div class='col-md-5 col-xs-8'>
-							<textarea rows='3' class="form-control"></textarea>
+						<div class='col-md-6 col-xs-8'>
+							<textarea rows='3' class="form-control" #note></textarea>
 						</div>
 				</div>
 				<div class='row buttonRow'>
-						<div class='col-md-3 col-md-offset-4 col-xs-offset-4 col-xs-4 viewBtnDiv'>
+						<div class='col-md-3 col-md-offset-5 col-xs-offset-3 col-xs-4 viewBtnDiv'>
 								<button class='btn btn-primary'><span class='glyphicon glyphicon-search'></span>&nbsp;View</button>
 						</div>
 						<div class='col-md-3 col-xs-4 addBtnDiv'>
-								<button class='btn btn-success'><span class='glyphicon glyphicon-plus'></span>&nbsp;Add</button>							
+								<button class='btn btn-success' (click)="addClick(album.artist.name, album.artist.id, album.name, album.id, album.year, note.value)"><span class='glyphicon glyphicon-plus'></span>&nbsp;Add</button>							
 						</div>
 				</div>
 		</div>
+	</div>
 </div>
+<div class='col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1 centralBox fontsize18' *ngIf='addingAlbum' >
+	<div class='row'>
+		<div class='col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1' *ngIf='message == ""'>
+			<img src='../../images/loading.gif' class='loadingGif' >
+			<div class='loadingGifText'>Loading...</div>
+		</div>
+		<div class='col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1' *ngIf='message != ""' ng-class="{okDiv: esito, errorDiv: esito}">
+			<div class='loadingGifText'>
+				{{message}}
+				<br /><a class='cf' [routerLink]="['/albumInfo/' + album.id]" title='Return to album page'>Return to album info</a>
+				<br />
+			</div>
+		</div>
+	</div>
+</div>
+<router-outlet></router-outlet>

@@ -33,3 +33,23 @@ body {
 .fontsize18 {
 	font-size: 18px;
 }
+
+.loadingGifText{
+	margin-top:15px;
+	text-align: center;
+}
+.loadingGif{
+	display:block;
+	width:50%;
+	margin:auto;
+}
+
+.okDiv
+{
+	background-color:#ccffcc;
+}
+
+.errorDiv
+{
+	background-color: #ff5050;
+}
