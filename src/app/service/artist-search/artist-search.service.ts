@@ -51,11 +51,33 @@ export class ArtistSearchService {
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  getArtistInfo(artistId: number){
+        return this.http.get('https://api.spotify.com/v1/artists/' + artistId )
+                         .map((res:Response) => res.json())
+                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
   getAlbums(album: string) {
         return this.http.get('https://api.spotify.com/v1/search?q=' + album +'&type=album&album_type=album')
                          .map((res:Response) => res.json())
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
                          
+  }
+
+  getAllSectionFromWikiPage(artist){
+    var artistName = artist.replace(/ /g,"_");
+    var path =  "https://en.wikipedia.org/w/api.php?origin=*&action=parse&format=json&page="+artistName+"&prop=sections";
+    return this.http.get(path)
+                    .map((res:Response) => res.json())
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  getBandMembers(artist, section) {
+    var artistName = artist.replace(/ /g,"_");
+    var path =  "https://en.wikipedia.org/w/api.php?origin=*&action=query&&format=json&prop=revisions&rvprop=content&rvsection=" + section + "&titles=" + artistName;
+    return this.http.get(path)
+                    .map((resp:Response) => resp.json())
+                    .catch((errore:any) => Observable.throw(errore.json().error || 'Server error'));
   }
 
   filtraAlbum(response: any){
@@ -103,5 +125,6 @@ export class ArtistSearchService {
                          .map((res:Response) => res.json())
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
+
 
 }

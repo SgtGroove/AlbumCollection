@@ -17,7 +17,7 @@ export class AddAlbumComponent implements OnInit {
   album: Album;
   date = new Date();
   addingAlbum : boolean = false;
-  message : string;
+  message : string = "";
   esito  : boolean;
   
   private myDatePickerOptions: IMyOptions = {
@@ -50,7 +50,7 @@ export class AddAlbumComponent implements OnInit {
       this.artistService.addAlbum(currentUser, artistName, artistId, albumName, albumId, year, note)
                               .subscribe (
                                      response => {
-                                        this.esito = (response[0].esito == "true") ? true : false;
+                                        this.esito = response[0].esito; 
                                         this.message = response[0].message;
                                        },
                                      err => {console.log(err);});

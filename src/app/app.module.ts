@@ -13,12 +13,18 @@ import { LogoutComponent } from './component/logout/logout.component';
 import { AuthGuard } from './guard/authguard.service';
 import { AddAlbumComponent } from './component/add-album/add-album.component';
 import { MyDatePickerModule } from 'mydatepicker';
+import { ArtistInfoComponent } from './component/artist-info/artist-info.component';
 
 const appRoutes: Routes = [
   {
     path: ':artistId/albums',
     component: AlbumlistComponent,
     data: { title: 'Albums Search Result' }
+  },
+  {
+    path: ':artistId/artistInfo',
+    component: ArtistInfoComponent,
+    data: { title: 'Artist Info' }
   },
   {
     path: 'albumInfo/:albumId',
@@ -62,6 +68,7 @@ const appRoutes: Routes = [
     LoginComponent,
     LogoutComponent,
     AddAlbumComponent,
+    ArtistInfoComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

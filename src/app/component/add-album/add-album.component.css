@@ -65,3 +65,13 @@
 	-moz-border-radius: 15px;
 	border-radius: 15px;
 }
+.okDiv
+{
+	background-color:#ccffcc;
+}
+
+.errorDiv
+{
+	/*background-color: #ff5050;*/
+	background-color: #ff9b9b;
+}
