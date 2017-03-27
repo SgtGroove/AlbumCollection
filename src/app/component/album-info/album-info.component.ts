@@ -26,7 +26,7 @@ export class AlbumInfoComponent implements OnInit {
   ngOnInit() {  
       this.subAlbumInfo = this.route.params.subscribe(params => {
         // Prendo la variabile dal path e la uso per caricarmi le info dell'album
-        let albumId = params['artistId'];
+        let albumId = params['albumId'];
         this.artistService.getAlbumInfo(albumId)
                            .subscribe(
                                response => {

@@ -14,13 +14,16 @@ import 'rxjs/add/operator/catch';
 })
 export class ArtistInfoComponent implements OnInit {
   artist: Artista;
+  sub: any;
   subAlbumInfo:any;
   subFormation:any;
   bandMembersHTML: string = "";
-  sub: any;
-  section: number = -1;
+  discographyHTML: string = "";
   pageId: number = -1;
-
+  sectionBandMember: number = -1;
+  sectionDiscography: number = -1;
+  errorMembers = false;
+  errorDiscography = false;
   constructor(private artistService : ArtistSearchService, private route: ActivatedRoute) {
   }
 
@@ -42,42 +45,85 @@ export class ArtistInfoComponent implements OnInit {
         this.subFormation = this.artistService.getAllSectionFromWikiPage(artistName)
                                               .subscribe(
                                                         response => {
-                                                          var sectionTag = response.parse.sections.filter(p => p.line.trim().toLowerCase() == ("members") || p.line.trim().toLowerCase() == ("band members") );
                                                           this.pageId = response.parse.pageid;
-                                                          this.section = sectionTag[0].index;
-                                                          this.artistService.getBandMembers(this.artist.name, this.section)
-                                                                            .subscribe(
-                                                                                      risposta => {
-                                                                                                    this.bandMembersHTML = this.convertMediaWikiToHTML(risposta.query.pages[this.pageId].revisions[0]['*']);
-                                                                                                  },
-                                                                                      errore => { console.log(errore) });
-                                                                    },
+                                                          var sectionTag = response.parse.sections.filter(p => p.line.trim().toLowerCase() == ("members") || p.line.trim().toLowerCase() == ("band members") );
+                                                          if(sectionTag[0] == undefined){
+                                                            this.errorMembers = true;
+                                                          }
+                                                          else {
+                                                            this.sectionBandMember = sectionTag[0].index;
+                                                            // Band Members
+                                                            this.artistService.getSectionFromWikiPage(this.artist.name, this.sectionBandMember)
+                                                                              .subscribe(
+                                                                                        risposta => {
+                                                                                                      this.bandMembersHTML = this.convertMediaWikiToHTML(risposta.query.pages[this.pageId].revisions[0]['*']);
+                                                                                                    },
+                                                                                        errore => { console.log(errore) });
+                                                            
+                                                          }
+                                                          
+                                                          var sectionTag = response.parse.sections.filter(p => p.line.trim().toLowerCase() == ("discography"));
+                                                          if(sectionTag[0] == undefined){
+                                                            this.errorMembers = true;
+                                                          }
+                                                          else {
+                                                            this.sectionDiscography = sectionTag[0].index;
+                                                            // Discography
+                                                            this.artistService.getSectionFromWikiPage(this.artist.name, this.sectionDiscography)
+                                                                           .subscribe(
+                                                                                        risposta => {
+                                                                                                      this.discographyHTML = this.convertMediaWikiToHTML(risposta.query.pages[this.pageId].revisions[0]['*']);
+                                                                                                    },
+                                                                                        errore => { console.log(errore) });
+                                                              }
+                                                          },
                                                          err => { console.log(err);  });
   }
   
-  private convertMediaWikiToHTML(members: string) {
+  private convertMediaWikiToHTML(membersInput: string ) {
 
-      var regexTitle = /==(\s\w*\s)==/gi;
-      members = members.replace(regexTitle,"<li class='li_title'>$1</li>");
-      var regexLine = /;(\w*\s*)*/gi;
-      members = members.replace(regexLine,"<li class='li_title'><h1>$1</h1></li>");
-      var regexLink = /\[\[(((\w*\s*)*)(\s\(\w*\)\|(\w*\s*)*)*)\]\]((\s\–*\w*\,*\(*\d*\)*)*)/gi
-      members = members.replace(regexLink,"<li>$2 $6</li>");
-      var regexStar = /(\*\s)/gi;
-      members = members.replace(regexStar,"");
-      return members;
-
-      /*
-      memberTemp.replace("==","</li>");
-      memberTemp.replace(/;/g,"<li>");
-      memberTemp.replace(/\*g,"<br />");
-      memberTemp.replace(/\[\[/g, "");
-      memberTemp.replace(/\]\]/g, "");
-
-      memberTemp.replace("Band Members", "");
-      memberTemp.replace("Formation", "");
-      */
+      // Elimino la Sezione della timeline (attualmente ingestibile)
+      var regexTimeLine = /((\=\=\=\sTimeline\s\=\=\=)|(Timeline))([\s\w\d\<\!\-\=\/\>\{\#\:\|\}\(\.\)\!\,"]*)/gi;
+      membersInput = membersInput.replace(regexTimeLine,"");
       
+      var memberSplit = membersInput.split(/\r?\n/);
+      var returnStr = "";
+
+      for(var i = 0; i < memberSplit.length; i++)
+      {
+          var members = "";
+          var members = memberSplit[i];
+
+          // Titoli che iniziano con '''
+          var regexTitleApici = /\'\'\'([\s\w]*)\'\'\'/gi;
+          members = members.replace(regexTitleApici,"<div class='col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1 titleParagrafo marginTop10'>$1</div>");
+          // Titoli che iniziano con ===
+          var regexTitle3 = /===([\s\w]*)===/gi;
+          members = members.replace(regexTitle3,"<div class='col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1 titleParagrafo marginTop10'>$1</div>");
+          // Titoli che iniziano con ==
+          var regexTitle = /==([\s\w]*)==/gi;
+          members = members.replace(regexTitle,"<div class='col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1 titleParagrafo marginTop10'>$1</div>");
+          // Link contenenti [[ e ]] e che iniziano con i caratteri "; " (spazio) --> sezione per gli elementi della band
+          var regexLink = /\*\s?\[\[(((\w*\s*)*)(\s\(\w*\)\|(\w*\s*)*)*)\]\]((\s?|&nbsp;)\–(\s?|&nbsp;)[\s\w\,]*)([\(\w\s\)\,\-\–\;\:\[\"\]\<\=\>\.\/\{\}\|]*)/gi
+          members = members.replace(regexLink,"<div class='col-md-10 cool-md-offset-1 col-xs-10 col-xs-offset-1 fontSize14px'>$2 <span class='colorGrey'>$6</span></div>");
+          // Sezione che inzia con le {{}}
+          var regexMainTitle = /(\{\{([\w\s\|\/\:\,\;\_\!\?\=\.])*}})/gi;
+          members = members.replace(regexMainTitle,"");
+          // Sezione che inizia con * ''[[ --> sezione per gli album
+          var regexAlbum = /((\*\s)(\'\')*)\[\[([\"\w\s\.\'\&\!\?\-]*)([\|\w\(\)\s\/\.\"\'\&]*)\]\][\'\'\s\(\)\w]*(\([\d\,\w\s]*\))([\s\(\w\)]*)([\s\w\[\&\'\/\]\]\(\,\)\|\!]*)/gi;
+          members = members.replace(regexAlbum,"<div class='col-md-10 cool-md-offset-1 col-xs-10 col-xs-offset-1 fontSize14px'> - $4 $6</div>");
+          // Elimino le righe intermedie con inziano con *
+          var regexPulisciRigheIntermedie = /\*\s?[\w\s\[\]\;\&\–\,\?\!\,\.\_\(\)\[\]\-]*/gi
+          members = members.replace(regexPulisciRigheIntermedie,"");
+          // Titoli che iniziano con ; e finiscono con ;
+          var regexLine = /^\;([\w\s]*)\s*/gi;
+          members = members.replace(regexLine,"<div class='col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1 titleParagrafo marginTop10'>$1</div>");
+
+          var regexNote = /(Note\:([\w\s\,\[\]\(\)\'\/\.\?\:\;\.\,]*))/gi;
+          members = members.replace(regexNote,"");
+          returnStr = returnStr + members;
+      }
+      return returnStr;     
   }
 
 }

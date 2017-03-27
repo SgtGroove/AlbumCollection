@@ -72,7 +72,7 @@ export class ArtistSearchService {
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  getBandMembers(artist, section) {
+  getSectionFromWikiPage(artist, section) {
     var artistName = artist.replace(/ /g,"_");
     var path =  "https://en.wikipedia.org/w/api.php?origin=*&action=query&&format=json&prop=revisions&rvprop=content&rvsection=" + section + "&titles=" + artistName;
     return this.http.get(path)

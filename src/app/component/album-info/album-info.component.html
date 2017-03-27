@@ -18,17 +18,8 @@
 					</div>
 			</div>
 		</div>
-	</div>		
-	<!--
-	<div class='row'>
-		<div class='col-md-offset-4 col-md-4'>
-			<img src="{{album.imageUrl}}" class='imageArtist' *ngIf="album.imageUrl"/>
-		</div>
 		<div class='row'>
 			<div class='col-md-10'>
-				<div class='titleBox'>
-					<h2 class='albumName'>{{album.artist.name}} - {{album.name}} - {{album.year}}</h2>
-				</div>	
 				<table class="table">
 				  <thead>
 				    <tr>
@@ -42,12 +33,12 @@
 					  <tr  *ngFor="let track of album.tracks">
 					  	<td>{{track.track_number}}</td>
 					  	<td>{{track.name}}</td>
-					  	<td>{{track.duration}}</td>
 					  	<td><audio controls src="{{track.previewUrl}}">Il tuo browser non supporta l'elemento audio</audio></td>
 					  </tr>
 				  </tbody>
 				</table>
 			</div>
 		</div>
-	</div>
-	-->	
+	</div>		
+
+	

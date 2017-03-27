@@ -53,3 +53,20 @@ body {
 {
 	background-color: #ff5050;
 }
+.titleParagrafo
+{
+    color:#337ab7;;
+		border-bottom:1px solid grey;
+}
+.fontSize13px {
+	font-size: 14px;
+}
+.titleArtist
+{
+    text-align: center;
+    font-size: 22px;
+}
+.colorGrey
+{
+	color:#6C7A89;
+}
