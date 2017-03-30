@@ -14,7 +14,7 @@
 }
 
 .albumBox {
-	width: 65%;
+	width: 85%;
 	margin:auto;
 
 	text-align:center;
@@ -42,7 +42,8 @@
 
 .albumButtonDiv
 {
-	padding-right:0px;
+	/*padding-right:0px;*/
+	text-align: center;
 	height: 48px;
 }
 
@@ -54,11 +55,13 @@
 .cf {
   position:relative;
   margin:0 auto;
+  width: 48px;
 }
 
 .cf img {
   width:48px;
   height:48px;
+  margin-left: 10px;
   position:absolute;
   -webkit-transition: opacity 0.5s ease-in-out;
   -moz-transition: opacity 0.5s ease-in-out;

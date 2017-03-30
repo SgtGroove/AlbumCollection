@@ -1,22 +1,21 @@
-<div class='container pddTop70' *ngIf="artists?.length > 0">
-	<div class='row artistRow' *ngFor="let artist of artists">
-		<div class='col-md-4 artistPhoto'>
-			<img src="{{artist.images[0]['url']}}" class='imageArtist' *ngIf="artist.images[0]"/>
-			<img src="../../images/image-not-found.jpg" class='imageArtist image-not-found' *ngIf="artist.images[0] == undefined"/>
-		</div>
-		<div class='col-md-4 artistName'>
-			<a [routerLink]="['/' + artist.id + '/artistInfo']">{{artist.name}}</a>
-		</div>
-		<div class='col-md-4'>
-			<div class='row'>
-				popularity: {{artist.popularityInt}}	
-			</div>
-			<div class='row'>
-				<a [routerLink]="['../../' + artist.id + '/albums']">
-					<button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;Search Albums</button>
-				</a>	
-			</div>
-		</div>
+<div class='container pddTop70' *ngIf="artistsView?.length > 0">
+	<div class='row' *ngFor="let tripleArtist of artistsView; let i = index">
+	        <div *ngFor="let artist of tripleArtist;" class='col-md-4 col-sm-4 col-xs-12 marginTop10'>
+				<div class='artistBox'>
+					<div class='row'>
+		        		<img class='artistPhoto' src="{{artist.images[0]['url']}}" *ngIf="artist.images[0]" />
+					</div>
+					<div>	
+						<div class='boxText'>
+							<div>
+								<div class='bandNameDiv'><a [routerLink]="['/' + artist.id + '/artistInfo']">{{artist.name}}</a></div>
+								<div class='albumsDiv'><a [routerLink]="['/' + artist.id + '/albums']">Albums</a></div>
+							</div>
+						</div>
+					</div>	
+				</div>	
+		    </div>	
 	</div>
 </div>
 <router-outlet></router-outlet>
+

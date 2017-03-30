@@ -21,27 +21,4 @@ export class AppComponent{
 		this.subscription = this.authenticationService.getEmittedValue()
 				.subscribe(item => this.isLogged = item);			
 	}
-
-	clicked(artistName : string, albumName : string, year: string) {
-
-		if(artistName != "" && year != "" && albumName == "") {
-			var path = '/albums/_none_/artist/' + artistName + '/year/' + year;
-			this.router.navigateByUrl(path);
-		}
-		else {
-			if(artistName != "" || albumName != "") 
-			{
-				if(artistName != "" && albumName == "")
-					this.router.navigateByUrl('/artists/' + artistName);
-				else 
-					if(albumName != ""){
-						if(artistName == "") artistName =  "_none_";
-						if(year == "") 		 year =  "_none_";
-
-						var path = '/albums/' + albumName + '/artist/' + artistName + '/year/' + year;
-						this.router.navigateByUrl(path);
-					}
-				}
-			}
-		}
 }

@@ -1,0 +1,26 @@
+<div class='container pddTop70'>
+	 <div class='col-md-2 col-md-offset-4 col-sm-4 marginTop10 searchBox'>
+        <div class="form-group">
+             <div class='row marginTop15'>
+                <div class='col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 formSearchTitle'>Form Search</div> 
+             </div> 
+             <div class='row marginTop15'>
+                <div class='col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 searchString'>Artist:</div> 
+                <div class='col-md-6 col-sm-6 '><input class="form-control inputNormal" type="text" placeholder="Artist Search" #artistName></div> 
+             </div> 
+             <div class='row marginTop15'>
+                <div class='col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2  searchString'>Album:</div> 
+                <div class='col-md-6 col-sm-6 '><input class="form-control inputNormal" type="text" placeholder="Album Search" #albumName></div> 
+             </div> 
+             <div class='row marginTop15'>
+                <div class='col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2  col-sm-offset-2  searchString'>Year:</div> 
+                <div class='col-md-6 col-sm-6 '> <input class="form-control inputSmall" type="text" placeholder="Year" #year></div> 
+             </div> 
+             <div class='row marginTop15'>
+                 <button type="button" class="btn btn-primary" aria-label="Left Align" (click)="clicked(artistName.value, albumName.value, year.value)">
+                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Search
+                  </button>	
+              </div> 
+        </div>
+    </div> 
+</div> 

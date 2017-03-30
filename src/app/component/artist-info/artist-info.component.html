@@ -12,18 +12,21 @@
 				</div>
 				<div class='row'>
 						<div class='col-md-12 col-xs-12' *ngIf="bandMembersHTML!=''" [innerHTML]="bandMembersHTML"></div>
-						<div class='col-md-12 col-xs-12' *ngIf="bandMembersHTML==''">
+						<div class='col-md-12 col-xs-12' *ngIf="bandMembersHTML=='' && !errorMembers">
 								<div class='col-md-12 col-xs-12 titleArtist marginTop10'>Members</div>
 								<div class='col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-4'>
 									<img src='../../images/loading.gif' class='loadingGif' >
 									<div class='loadingGifText'>Loading...</div>
 								</div>
-								
+						</div>
+						<div class='col-md-12 col-xs-12' *ngIf="errorMembers">
+								<div class='col-md-12 col-xs-12 titleArtist marginTop10'>Members</div>
+								<div class='col-md-12 col-xs-12' style='text-align:center'>No members found.</div>
 						</div>
 				</div>
 				<div class='row'>
 						<div class='col-md-12 col-xs-12' *ngIf="discographyHTML!=''" [innerHTML]="discographyHTML"></div>
-						<div class='col-md-12 col-xs-12' *ngIf="discographyHTML==''">
+						<div class='col-md-12 col-xs-12' *ngIf="discographyHTML==''  && !errorMembers">
 								<div class='col-md-12 col-xs-12 titleArtist marginTop10'>Discography</div>
 								<div class='col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-4'>
 									<img src='../../images/loading.gif' class='loadingGif' >

@@ -4,7 +4,6 @@
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	margin: 10px;
-	height:180px;
 }
 
 .artistName
@@ -14,13 +13,12 @@
 	font-size:18px;
 }
 
-.imageArtist
+.artistPhoto
 {
-	margin-top:5px;
-	margin-bottom:5px;
-	width:150px;
-	height:170px;
-
+	margin-bottom:5px; 
+	width:70%;
+	height: 222px;
+	
 	border-radius: 50%;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
@@ -28,4 +26,40 @@
 
 .image-not-found {
 	border:1px solid grey;
+}
+
+
+.boxText
+{
+	margin-top: 10px;
+	margin-bottom: 5px;
+	font-size: 18px;
+	text-align: center;
+}
+
+.artistBox {
+	width: 85%;
+	margin:auto;
+
+	text-align:center;
+	font-size:18px;
+	padding-top:10px;
+	
+	background-color: #f6f9fa;; /*#f5f5f5;*/
+	border: 1px solid #175071 ;/*#a3a3a3;*/
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+.artistBox a {
+	color: #175071; /*#08c;*/
+}
+
+.bandNameDiv {
+	weight: 80%;
+}
+
+.albumsDiv {
+	weight: 20%;
 }

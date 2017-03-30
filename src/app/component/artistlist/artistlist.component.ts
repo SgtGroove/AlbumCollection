@@ -11,7 +11,10 @@ import { Artista } from '../../model/artista';
 })
 export class SearchResultsComponent implements OnInit {
   artists: Artista[];
+  artistsView: Array<Array<Artista>[]>;
+  elementsForRow: number = 3;
   sub:any;
+  
   constructor(private artistService : ArtistSearchService, private route: ActivatedRoute) {
    }
 
@@ -23,7 +26,8 @@ export class SearchResultsComponent implements OnInit {
                            .subscribe(
                                response => {
                                  this.artists = response.artists.items;
-                                 this.filtraArtisti(this.artists);
+                                 this.filtraArtisti(this.artists)
+                                 this.artistsView = this.createArtistsView(this.artists);
                                },
                                err => { console.log(err); });
     });
@@ -32,6 +36,30 @@ export class SearchResultsComponent implements OnInit {
   filtraArtisti(artists: Artista[]){
     this.artists.forEach( item => item.popularityInt = parseInt(item.popularity));
     this.artists.sort(function (a, b) {return a.popularityInt - b.popularityInt;}).reverse(); // Ordino l'array decrescente
+  }
+
+  createArtistsView(artists: Artista[]){
+      let arrOut = [];
+      let triple = [];
+      if(this.artists.length < this.elementsForRow)
+      {
+        // Se i risultati trovati sono ono minori
+        arrOut.push(artists);
+      }
+      else
+      {
+          for (let i = 1; i <= this.artists.length; i++) 
+          {
+            triple.push(this.artists[i - 1]);
+            if (i % this.elementsForRow === 0) 
+            {
+                arrOut.push(triple);
+                triple= [];
+            }
+          }
+      }
+ 
+      return arrOut; 
   }
 
 }

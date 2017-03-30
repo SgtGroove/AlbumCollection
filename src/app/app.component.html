@@ -18,16 +18,6 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">My Album <span class="sr-only">(current)</span></a></li>
       </ul>
-      <form class="navbar-form navbar-left formHeader">
-        <div class="form-group">
-        	<input class="form-control inputNormal" type="text" placeholder="Artist Search" #artistName>
-	        <input class="form-control inputNormal" type="text" placeholder="Album Search" #albumName>
-          <input class="form-control inputSmall" type="text" placeholder="Year" #year>
-    			<button type="button" class="btn btn-primary" aria-label="Left Align" (click)="clicked(artistName.value, albumName.value, year.value)">
-    					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Search
-    			</button>	
-			    </div>
-	    </form>
       <ul class="nav navbar-nav navbar-right" *ngIf="!isLogged">
           <li><a [routerLink]="['/login']"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Login</a></li>
       </ul>
