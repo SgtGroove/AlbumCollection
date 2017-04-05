@@ -20,5 +20,48 @@
 	text-align:center;
 }
 
+.tableHeader 
+{
+	width:100%;
+}
 
+.trackNumber
+{
+	width:20%;
+	float:left;
+	text-align: center;
+}
 
+.trackName
+{
+	width:80%;
+	float:right;
+	text-align: left;
+}
+
+.ulTracks
+{
+	margin:0px !important;
+	padding:0px !important;
+	width:100%;
+	display:block;
+}
+
+.ulTracksLi
+{
+	list-style-type:none ;
+	width:100%;
+	/* border-bottom:1px solid #ccc; */
+	padding-bottom:5px;
+	padding-top:5px;
+}
+
+.trackSample
+{
+	width:100% !important;
+}
+
+.audioTrack
+{
+	width:100% !important;
+}

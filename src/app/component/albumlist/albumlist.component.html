@@ -6,7 +6,7 @@
 		        		<img src="{{album.images[0]['url']}}" *ngIf="album.images[0]" />
 		        	</div>
 		        	<div class='boxText'>
-		        		<div><a [routerLink]="['/' + album.artists[0].id + '/albums']">{{album.artists[0].name}}</a></div>
+		        		<div><a [routerLink]="['/' + album.artists[0].id + '/artistInfo']">{{album.artists[0].name}}</a></div>
 		        		<div>{{album.name}}</div>
 		        	</div>
 		        	<div class='iconContainer'>

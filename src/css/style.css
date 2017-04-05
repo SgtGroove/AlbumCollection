@@ -62,7 +62,7 @@ body {
 .titleParagrafo
 {
     color:#337ab7;;
-		border-bottom:1px solid grey;
+	border-bottom:1px solid grey;
 }
 .fontSize13px {
 	font-size: 14px;
@@ -75,4 +75,12 @@ body {
 .colorGrey
 {
 	color:#6C7A89;
+}
+.bold
+{
+	font-weight: bold;
+}
+.height100P
+{
+	height:100%;
 }

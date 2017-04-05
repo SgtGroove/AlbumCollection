@@ -19,24 +19,23 @@
 			</div>
 		</div>
 		<div class='row'>
-			<div class='col-md-10'>
-				<table class="table">
-				  <thead>
-				    <tr>
-				      <th>#</th>
-				      <th>Name</th>
-				      <th>Duration</th>
-				      <th></th>
-				    </tr>
-				  </thead>
-				  <tbody id='trackResults'>
-					  <tr  *ngFor="let track of album.tracks">
-					  	<td>{{track.track_number}}</td>
-					  	<td>{{track.name}}</td>
-					  	<td><audio controls src="{{track.previewUrl}}">Il tuo browser non supporta l'elemento audio</audio></td>
-					  </tr>
-				  </tbody>
-				</table>
+			<div class='col-md-10 col-md-offset-1 col-xs-12'>
+				<div class='tableHeader col-md-12 col-xs-12 col-sm-12'>
+					<table class='table'>
+							<thead>
+								<tr>
+									<td style='width:10%'>#</td>
+									<td style='width:60%'>Track Name</td>									
+									<td style='width:30%'></td>									
+								</tr>
+								<tbody>
+										<tr *ngFor="let track of album.tracks">
+											<td>{{track.track_number}}</td>
+											<td>{{track.name}}</td>									
+											<td><audio class='audioTrack' controls src="{{track.previewUrl}}">Il tuo browser non supporta l'elemento audio</audio></td>
+										</tr>
+								</tbody>		
+					</table>					
 			</div>
 		</div>
 	</div>		

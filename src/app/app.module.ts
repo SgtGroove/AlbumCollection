@@ -15,6 +15,7 @@ import { AddAlbumComponent } from './component/add-album/add-album.component';
 import { MyDatePickerModule } from 'mydatepicker';
 import { ArtistInfoComponent } from './component/artist-info/artist-info.component';
 import { SearchFormComponent } from './component/search-form/search-form.component';
+import { ListCollectionComponent } from './component/list-collection/list-collection.component';
 
 const appRoutes: Routes = [
   {
@@ -64,6 +65,13 @@ const appRoutes: Routes = [
     component: AddAlbumComponent,
     data: { title: 'Add Album' }
   }
+  ,
+  {
+    path: 'myCollection',
+    canActivate: [AuthGuard],
+    component: ListCollectionComponent,
+    data: { title: 'My List' }
+  }
 ];
 @NgModule({
   declarations: [
@@ -76,6 +84,7 @@ const appRoutes: Routes = [
     AddAlbumComponent,
     ArtistInfoComponent,
     SearchFormComponent,
+    ListCollectionComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

@@ -44,10 +44,10 @@ export class AddAlbumComponent implements OnInit {
     });
   }
   
-  addClick( artistName : string, artistId: string, albumName:string, albumId: string, year: number, note: string) {
+  addClick( artistName : string, artistId: string, albumName:string, albumId: string, year: number, note: string, imageUrl: string) {
       this.addingAlbum = true;
       let currentUser =  JSON.parse(localStorage.getItem('currentUser')).username;
-      this.artistService.addAlbum(currentUser, artistName, artistId, albumName, albumId, year, note)
+      this.artistService.addAlbum(currentUser, artistName, artistId, albumName, albumId, year, note, imageUrl)
                               .subscribe (
                                      response => {
                                         this.esito = response[0].esito; 

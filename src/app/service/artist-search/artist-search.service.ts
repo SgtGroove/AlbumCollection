@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
 import { Track } from '../../model/track';
 import { Album } from '../../model/album';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class ArtistSearchService {
@@ -112,7 +112,7 @@ export class ArtistSearchService {
  
  
  
-  addAlbum(currentUser:string, artistName : string, artistId: string, albumName: string, albumId: string, year: number, note: string) {
+  addAlbum(currentUser:string, artistName : string, artistId: string, albumName: string, albumId: string, year: number, note: string, imgUrl:string) {
         let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         let options = new RequestOptions({ headers: headers, method: "POST"}); 
         return this.http.post('http://www.consigliamiundisco.it/rest/addAlbum', JSON.stringify({ currentUser: currentUser, 
@@ -121,10 +121,18 @@ export class ArtistSearchService {
                                                                                                  abumName: albumName,
                                                                                                  albumId: albumId,
                                                                                                  year: year,
-                                                                                                note:note }), options)
+                                                                                                 note:note,
+                                                                                                 imgUrl:imgUrl }), options)
                          .map((res:Response) => res.json())
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  getMyCollection(token: string){
+        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded'});
+        let options = new RequestOptions({ headers: headers, method: "POST" }); 
+        return this.http.post('http://www.consigliamiundisco.it/rest/getAlbums', JSON.stringify({ token: token }), options)
+                         .map((res:Response) => res.json())
+                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
 
 }
