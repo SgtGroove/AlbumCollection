@@ -16,6 +16,7 @@ import { MyDatePickerModule } from 'mydatepicker';
 import { ArtistInfoComponent } from './component/artist-info/artist-info.component';
 import { SearchFormComponent } from './component/search-form/search-form.component';
 import { ListCollectionComponent } from './component/list-collection/list-collection.component';
+import { OrderByPipe } from './pipes/order-by.pipe';
 
 const appRoutes: Routes = [
   {
@@ -85,6 +86,7 @@ const appRoutes: Routes = [
     ArtistInfoComponent,
     SearchFormComponent,
     ListCollectionComponent,
+    OrderByPipe,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

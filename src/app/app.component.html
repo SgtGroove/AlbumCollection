@@ -21,8 +21,9 @@
       <ul class="nav navbar-nav navbar-right" *ngIf="!isLogged">
           <li><a [routerLink]="['/login']"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Login</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right" *ngIf="isLogged">
-          <li><a [routerLink]="['/logout']"><span class="glyphicon glyphicon-log-out" ></span>&nbsp;Logout</a></li>
+      <ul class="nav navbar-nav navbar-right" *ngIf="isLogged && username != undefined">
+          <li><a href='#'><span class='glyphicon glyphicon-user'></span> &nbsp;{{username}}</a></li>
+          <li><a [routerLink]="['/logout']"><span class="glyphicon glyphicon-log-out" ></span> &nbsp;Logout</a></li>
       </ul>
     </div>
   </div>

@@ -1,3 +1,22 @@
-<p>
-  list-collection works!
-</p>
+<div class='container pddTop70' *ngIf="albums?.length > 0">
+  <div class='albumFilter'>
+      <div class='col-md-6 col-xs-6 filterName'>Order By:</div>
+      <div class='col-md-6 col-xs-6'>
+          <select class="form-control" [(ngModel)]="selectedOrder">
+            <option value="+year">Year</option>
+            <option value="+albumName">Album Name</option>
+            <option value="+artistName">Artist Name</option>
+          </select>
+      </div>    
+  </div>
+	<div class='row col-md-4 col-sm-4 marginTop10' *ngFor="let album of albums | orderBy : selectedOrder">
+      <div class='albumBox' >
+          <div><img src = "{{album.imageUrl}}" alt='album_image' /></div> 
+          <div class='boxText'>
+              <div><a [routerLink]="['/' + album.artist.id + '/artistInfo']">{{album.artist.name}}</a></div>
+              <div><a [routerLink]="['/albumInfo/' + album.id ]">{{album.name}}</a></div>
+              <div>{{album.year}}</div>
+		      </div>
+       </div>
+  </div>
+<router-outlet></router-outlet>

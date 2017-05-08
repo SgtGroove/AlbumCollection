@@ -5,6 +5,8 @@ import { ArtistSearchService } from "../../service/artist-search/artist-search.s
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Album } from '../../model/album';
+import { OrderByPipe } from '../../pipes/order-by.pipe';
+  
 
 @Component({
   selector: 'app-list-collection',
@@ -14,6 +16,7 @@ import { Album } from '../../model/album';
 })
 export class ListCollectionComponent implements OnInit {
   sub:any;
+  selectedOrder:string = "+year";
   albums: Album[];
   constructor(private artistService : ArtistSearchService, private router: Router) { }
 
@@ -22,16 +25,7 @@ export class ListCollectionComponent implements OnInit {
               // Prendo la variabile dal path e la uso per caricarmi gli album
               this.artistService.getMyCollection(token.token)
                                 .subscribe(
-                                    response => {
-                                                  if(response[0].esito)
-                                                  {
-                                                    this.albums = response[0].albums;
-                                                  }
-                                                  else
-                                                  {
-                                                    this.router.navigateByUrl('/login');
-                                                  }
-                                                },
+                                    response => { this.albums = response; },
                                     err => { 
                                       (error: any) => console.log(error) 
                                     });

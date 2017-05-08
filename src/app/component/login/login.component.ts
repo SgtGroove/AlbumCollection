@@ -24,7 +24,7 @@ export class LoginComponent {
         this.authenticationService.login(this.model.username, this.model.password)
                                   .subscribe(result => {
                                                 if (result === true) {
-                                                    this.authenticationService.changeLoginString(true);
+                                                    this.authenticationService.changeLoginString(this.model.username);
                                                     this.loginSuccess = true;
                                                     this.username = JSON.parse(localStorage.getItem('currentUser')).username;
                                                 } else {

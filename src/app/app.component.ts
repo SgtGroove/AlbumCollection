@@ -15,10 +15,21 @@ import { Subscription } from "rxjs/Rx";
 
 export class AppComponent{
 	isLogged : boolean;
+	username : string;
 	subscription : Subscription;
 
 	constructor(private router: Router, private authenticationService: AuthenticationService) {
-		this.subscription = this.authenticationService.getEmittedValue()
-				.subscribe(item => this.isLogged = item);			
+		var cu = JSON.parse(localStorage.getItem('currentUser'));
+		if(cu == null  ){
+			this.subscription = this.authenticationService
+									.getEmittedValue()
+									.subscribe(item => {this.username = item; this.isLogged = true;});			
+		}
+		else {
+			// TODO: controllare se il token è valido
+			this.username = cu.username;
+			this.isLogged = true;
+		}
 	}
 }
+
